@@ -19,7 +19,7 @@ private static final Logger logger = LoggerFactory.getLogger(BookRepository.clas
         List<Book> someBooks = List.of(
                 new Book(1L,"H Sienkiewicz", "Potop"),
                 new Book(2L,"H Sienkiewicz", "Potop2"),
-                new Book(2L,"A Mickiewicz", "Pan Tadeusz")
+                new Book(3L,"A Mickiewicz", "Pan Tadeusz")
 
         );
 
