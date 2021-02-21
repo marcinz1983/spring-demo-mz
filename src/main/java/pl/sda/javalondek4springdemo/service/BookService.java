@@ -3,6 +3,8 @@ package pl.sda.javalondek4springdemo.service;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import pl.sda.javalondek4springdemo.exeption.BookNotFoundExeption;
 import pl.sda.javalondek4springdemo.model.Book;
 import pl.sda.javalondek4springdemo.repository.BookRepository;
@@ -43,5 +45,20 @@ public class BookService {
         logger.info("from service findBookById with:[{}] is: [{}]",id, result);
         return  result;
 
+    }
+
+
+
+
+    public Book saveBook(Book toSave) {
+       Long curentMaxId =  bookRepository.findAllBooks()
+                .stream()
+                .mapToLong(value -> value.getId())
+                .max()
+               .orElse(1);
+       toSave.setId(curentMaxId + 1);
+       bookRepository.findAllBooks().add(toSave);
+        logger.info("saved book : [{}]", toSave);
+        return toSave;
     }
 }
