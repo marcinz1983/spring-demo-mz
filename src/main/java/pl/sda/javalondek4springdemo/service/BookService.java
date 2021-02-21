@@ -44,4 +44,22 @@ public class BookService {
 
         return result;
     }
+
+    public Book saveBook(Book toSave) {
+
+        // find max id
+        // add book with id (max id + 1)
+        // return book with id
+        Long currentMaxId = bookRepository.findAllBooks()
+            .stream()
+            .mapToLong(value -> value.getId())
+            .max()
+            .orElse(1);
+        toSave.setId(currentMaxId + 1);
+        bookRepository.findAllBooks().add(toSave);
+
+        logger.info("saved book: [{}]", toSave);
+
+        return toSave;
+    }
 }
