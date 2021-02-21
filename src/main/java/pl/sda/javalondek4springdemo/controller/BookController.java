@@ -18,6 +18,9 @@ import java.util.List;
 public class BookController {
 
     // TODO: kolejność budowania aplikacji - kroki:)
+    // dtos
+    // exceptions
+    // baza - entities
 
     private static final Logger logger = LoggerFactory.getLogger(BookController.class);
 
