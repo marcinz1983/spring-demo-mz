@@ -4,8 +4,10 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -60,5 +62,21 @@ public class BookController {
         logger.info("deleting book by id: [{}]", id);
 
         bookService.deleteBookById(id);
+    }
+
+    // update (replace)
+    @PutMapping("/{id}")
+    public Book replaceBook(@PathVariable("id") Long id, @RequestBody Book toReplace) {
+        logger.info("replacing book with id: [{}] with new one: [{}]", id, toReplace);
+
+        return bookService.replaceBook(id, toReplace);
+    }
+
+    // update (partial)
+    @PatchMapping("/{id}")
+    public Book updateBook(@PathVariable("id") Long id, @RequestBody Book toUpdate) {
+        logger.info("updating book with id: [{}] with new attributes: [{}]", id, toUpdate);
+
+        return bookService.updateBookWithAttributes(id, toUpdate);
     }
 }
