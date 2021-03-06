@@ -2,6 +2,7 @@ package pl.sda.javalondek4springdemo.controller;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -52,5 +53,12 @@ public class BookController {
         logger.info("adding book: [{}]", toSave);
 
         return bookService.saveBook(toSave);
+    }
+
+    @DeleteMapping("/{id}")
+    public void deleteBookById(@PathVariable("id") Long id) {
+        logger.info("deleting book by id: [{}]", id);
+
+        bookService.deleteBookById(id);
     }
 }

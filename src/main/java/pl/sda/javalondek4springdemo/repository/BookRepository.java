@@ -32,4 +32,8 @@ public class BookRepository {
 
         return books;
     }
+
+    public boolean deleteBookWithId(Long id) {
+        return books.removeIf(book -> book.getId().equals(id));
+    }
 }

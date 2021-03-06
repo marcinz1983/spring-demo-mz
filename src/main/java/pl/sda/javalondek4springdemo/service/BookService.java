@@ -62,4 +62,10 @@ public class BookService {
 
         return toSave;
     }
+
+    public boolean deleteBookById(Long id) {
+        boolean result = bookRepository.deleteBookWithId(id);
+        logger.info("trying to delete book with id: [{}], result: [{}]", id, result);
+        return result;
+    }
 }
