@@ -101,7 +101,7 @@ public class BookController {
         return bookService.updateBookWithAttributes(id, toUpdate);
     }
 
-    //    try {
+//    try {
 //        all methods from current controller
 //    } catch (BookNotFoundException exception) {
 //
