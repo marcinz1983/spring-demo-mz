@@ -2,8 +2,10 @@ package pl.sda.javalondek4springdemo.controller;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -12,10 +14,15 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import pl.sda.javalondek4springdemo.dto.ExceptionResponse;
+import pl.sda.javalondek4springdemo.exception.BookNotFoundException;
 import pl.sda.javalondek4springdemo.model.Book;
 import pl.sda.javalondek4springdemo.service.BookService;
 
+import javax.servlet.http.HttpServletRequest;
 import java.net.URI;
+import java.time.Clock;
+import java.time.LocalDateTime;
 import java.util.List;
 
 @RestController
@@ -92,5 +99,28 @@ public class BookController {
         logger.info("updating book with id: [{}] with new attributes: [{}]", id, toUpdate);
 
         return bookService.updateBookWithAttributes(id, toUpdate);
+    }
+
+    //    try {
+//        all methods from current controller
+//    } catch (BookNotFoundException exception) {
+//
+//    } catch (AnotherException exc) {
+//
+//    }
+    // only for this controller
+    @ExceptionHandler(BookNotFoundException.class)
+    public ResponseEntity<ExceptionResponse> handleBookNotFoundException(Exception exception, HttpServletRequest request) {
+        logger.warn("some unexpected exception has occurred:)", exception);
+
+
+        return ResponseEntity.badRequest().body(
+            new ExceptionResponse(LocalDateTime.now(Clock.systemUTC()),
+                HttpStatus.BAD_REQUEST.value(),
+                exception.getClass().getName(),
+                exception.getMessage(),
+                request.getServletPath()
+            )
+        );
     }
 }
