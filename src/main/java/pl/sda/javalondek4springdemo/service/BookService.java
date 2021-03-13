@@ -88,12 +88,13 @@ public class BookService {
     public BookDto replaceBook(Long id, BookDto toReplace) {
         Book book = findBookByIdFromRepository(id);
 
-        toReplace.setId(id);
+        Book bookMapped = bookMapper.fromDtoToEntity(toReplace);
+        bookMapped.setId(id);
         bookRepository.findAllBooks().removeIf(book1 -> book1.getId().equals(id));
-        bookRepository.findAllBooks().add(toReplace);
-
+        bookRepository.findAllBooks().add(bookMapped);
         logger.info("replacing book [{}] with new one [{}]", book, toReplace);
-        return toReplace;
+
+        return bookMapper.fromEntityToDto(bookMapped);
     }
 
     public BookDto updateBookWithAttributes(Long id, BookDto toUpdate) {
