@@ -9,5 +9,4 @@ public class DummyController {
     public DummyController(DummyService dummyService) {
         this.dummyService = dummyService;
     }
-
 }

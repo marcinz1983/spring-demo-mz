@@ -6,7 +6,6 @@ public class DummyService {
 
     private final DummyRepository dummyRepository;
 
-
     public DummyService(DummyRepository dummyRepository) {
         this.dummyRepository = dummyRepository;
     }
