@@ -1,9 +1,11 @@
 package pl.sda.javalondek4springdemo.model;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
 @Entity
@@ -15,7 +17,8 @@ public class Course {
 
     private String courseName;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.PERSIST)
+    @JoinColumn(name = "TEACHER_FOREIGN_ID", referencedColumnName = "ID")
     private Teacher teacher;
 
     public Course() {
@@ -44,5 +47,14 @@ public class Course {
 
     public void setTeacher(Teacher teacher) {
         this.teacher = teacher;
+    }
+
+    @Override
+    public String toString() {
+        return "Course{" +
+            "id=" + id +
+            ", courseName='" + courseName + '\'' +
+            ", teacher=..." +
+            '}';
     }
 }
