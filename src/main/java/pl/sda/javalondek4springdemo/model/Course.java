@@ -20,7 +20,11 @@ public class Course {
     private String courseName;
 
     @ManyToOne(cascade = CascadeType.PERSIST)
-    @JoinColumn(name = "TEACHER_FOREIGN_ID", referencedColumnName = "ID")
+    // SQL names - use upper cases
+    // name = foreign key name in COURSES table (default: field_name + _ + ID -> TEACHER_ID)
+    // use custom name when column in database has some non-javish name :)
+    // referencedColumnName refers to primary key of Teacher
+    @JoinColumn(referencedColumnName = "ID")
     private Teacher teacher;
 
     public Course() {

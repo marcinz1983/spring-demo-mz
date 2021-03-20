@@ -1,7 +1,10 @@
 package pl.sda.javalondek4springdemo.service;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Transactional;
 import pl.sda.javalondek4springdemo.model.Address;
 import pl.sda.javalondek4springdemo.model.Course;
 import pl.sda.javalondek4springdemo.model.Teacher;
@@ -13,6 +16,8 @@ import java.util.List;
 
 @Component
 public class CrudInitializer implements CommandLineRunner {
+    
+    private static final Logger logger = LoggerFactory.getLogger(CrudInitializer.class);
 
     private final TeacherRepository teacherRepository;
 
@@ -24,6 +29,7 @@ public class CrudInitializer implements CommandLineRunner {
     }
 
     @Override
+    @Transactional
     public void run(String... args) throws Exception {
         // create one course
         Course java = new Course();
@@ -42,7 +48,11 @@ public class CrudInitializer implements CommandLineRunner {
         // save it:)
         teacher = teacherRepository.save(teacher);
 
-        System.out.println("Saved teacher: " + teacher);
+        logger.info("Saved teacher: " + teacher);
 //        courseRepository.save(java);
+
+        logger.info("All teachers from db:");
+        teacherRepository.findAll()
+            .forEach(teacher1 -> logger.info("teacher from db: " + teacher1));
     }
 }
