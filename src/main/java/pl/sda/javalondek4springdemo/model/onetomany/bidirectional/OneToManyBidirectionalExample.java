@@ -4,6 +4,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Transactional;
 import pl.sda.javalondek4springdemo.repository.onetomany.CatRepository;
 import pl.sda.javalondek4springdemo.repository.onetomany.OwnerRepository;
 
@@ -23,6 +24,7 @@ public class OneToManyBidirectionalExample implements CommandLineRunner {
         this.catRepository = catRepository;
     }
 
+    @Transactional
     @Override
     public void run(String... args) throws Exception {
         Cat white = new Cat();
@@ -41,6 +43,11 @@ public class OneToManyBidirectionalExample implements CommandLineRunner {
         ownerRepository.save(stranger);
 
         ownerRepository.findAll()
-            .forEach(owner -> logger.info("owner [{}] and cats: [{}]", owner, owner.getCat()));
+            .forEach(owner -> {
+//                List<Cat> cats = owner.getCat();
+//                logger.info("owner [{}] and cats: [{}]", owner, cats);
+                logger.info("owner id: [{}]", owner.getIdentifier());
+                logger.info("cats: [{}]", owner.getCat());
+            });
     }
 }

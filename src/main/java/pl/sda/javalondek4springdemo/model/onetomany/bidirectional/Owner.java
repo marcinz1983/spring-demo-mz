@@ -2,6 +2,7 @@ package pl.sda.javalondek4springdemo.model.onetomany.bidirectional;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -23,6 +24,7 @@ public class Owner {
 
     private String lastName;
 
+//    @OneToMany(cascade = CascadeType.PERSIST, mappedBy = "owner", fetch = FetchType.EAGER)
     @OneToMany(cascade = CascadeType.PERSIST, mappedBy = "owner")
     private List<Cat> cat;
 
