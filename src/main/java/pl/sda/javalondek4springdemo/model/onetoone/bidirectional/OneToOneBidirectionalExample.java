@@ -32,14 +32,26 @@ public class OneToOneBidirectionalExample implements CommandLineRunner {
         Cat mruczek = new Cat();
         mruczek.setName("mruczek");
 
-        catRepository.save(mruczek);
-        logger.info("mruczek was saved to db with id: [{}]", mruczek.getId());
+        // this commented source code can be used only when there's no cascade!!!
+//        catRepository.save(mruczek);
+//        logger.info("mruczek was saved to db with id: [{}]", mruczek.getId());
+////
+//        me.setCat(mruczek);
+//        ownerRepository.save(me);
 //
-        me.setCat(mruczek);
-        ownerRepository.save(me);
+//        mruczek.setOwner(me);
+//        catRepository.save(mruczek);
+//        // saving without cascade is nightmare, but sometimes is necessary :(
 
-        mruczek.setOwner(me);
-        catRepository.save(mruczek);
-        // saving without cascade is nightmare, but sometimes is necessary :(
+        Owner olaf = new Owner();
+        olaf.setFirstName("olaf");
+        olaf.setLastName("l");
+
+        Cat łobuz = new Cat();
+        łobuz.setName("lobuz");
+        łobuz.setOwner(olaf);
+        olaf.setCat(łobuz);
+
+        ownerRepository.save(olaf);
     }
 }
