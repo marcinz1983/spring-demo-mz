@@ -11,6 +11,8 @@ import javax.persistence.OneToOne;
 
 @Profile("onetoone-birectional")
 @Entity
+// Columns in db:
+// ID, NAME, MY_OWNER_ID
 public class Cat {
 
     @Id
@@ -20,7 +22,10 @@ public class Cat {
     private String name;
 
     @OneToOne
-    @JoinColumn(name = "MY_OWNER_ID", referencedColumnName = "ID")
+    // @JoinColumn attributes
+    // name - name of foreign key in CAT table
+    // referencedColumnName - name of primary key from OWNER table
+    @JoinColumn(name = "MY_OWNER_ID", referencedColumnName = "IDENTIFIER")
     private Owner owner;
 
     public Cat() {
