@@ -1,9 +1,11 @@
 package pl.sda.javalondek4springdemo.model.onetoone.unidiretional;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
@@ -22,7 +24,8 @@ public class Owner {
 
     private String lastName;
 
-    @OneToOne
+    @OneToOne(cascade = CascadeType.PERSIST)
+    @JoinColumn(name = "CAT_ID", referencedColumnName = "ID")
     private Cat cat;
 
     public Owner() {
