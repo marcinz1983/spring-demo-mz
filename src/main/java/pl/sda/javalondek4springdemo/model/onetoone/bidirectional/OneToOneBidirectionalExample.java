@@ -5,6 +5,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Component;
+import pl.sda.javalondek4springdemo.repository.onetoone.bidirectional.CatRepository;
 import pl.sda.javalondek4springdemo.repository.onetoone.bidirectional.OwnerRepository;
 
 @Profile("onetoone-birectional")
@@ -15,8 +16,11 @@ public class OneToOneBidirectionalExample implements CommandLineRunner {
 
     private final OwnerRepository ownerRepository;
 
-    public OneToOneBidirectionalExample(OwnerRepository ownerRepository) {
+    private final CatRepository catRepository;
+
+    public OneToOneBidirectionalExample(OwnerRepository ownerRepository, CatRepository catRepository) {
         this.ownerRepository = ownerRepository;
+        this.catRepository = catRepository;
     }
 
     @Override
@@ -27,9 +31,9 @@ public class OneToOneBidirectionalExample implements CommandLineRunner {
 
         Cat mruczek = new Cat();
         mruczek.setName("mruczek");
-
-        me.setCat(mruczek);
-        mruczek.setOwner(me);
+//
+//        me.setCat(mruczek);
+//        mruczek.setOwner(me);
 
         // save to db
         ownerRepository.save(me);
