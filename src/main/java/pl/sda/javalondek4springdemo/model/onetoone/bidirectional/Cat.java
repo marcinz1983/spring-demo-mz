@@ -9,7 +9,6 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 
-@Profile("onetoone-birectional")
 @Entity
 // Columns in db:
 // ID, NAME, MY_OWNER_ID

@@ -8,12 +8,13 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
+import javax.persistence.Table;
 
-@Profile("onetoone-unidirectional")
-@Entity
 // Columns in db:
 // ID, FIRST_NAME, LAST_NAME
 // no CAT column!!!
+@Entity(name = "OwnerUnidirectional")
+@Table(name = "OWNERS")
 public class Owner {
 
     @Id

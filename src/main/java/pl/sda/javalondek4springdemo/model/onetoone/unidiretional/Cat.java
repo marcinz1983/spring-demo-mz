@@ -8,9 +8,11 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
+import javax.persistence.Table;
 
 @Profile("onetoone-unidirectional")
-@Entity
+@Entity(name = "CatUnidirectional")
+@Table(name = "CATS")
 // Columns in db:
 // ID, NAME, MY_OWNER_ID
 public class Cat {

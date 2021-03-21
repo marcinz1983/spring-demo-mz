@@ -9,7 +9,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
 
-@Profile("onetoone-birectional")
 @Entity
 // Columns in db:
 // ID, FIRST_NAME, LAST_NAME
