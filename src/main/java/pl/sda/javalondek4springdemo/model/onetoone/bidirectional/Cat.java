@@ -6,6 +6,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 
 @Profile("onetoone-birectional")
@@ -19,6 +20,7 @@ public class Cat {
     private String name;
 
     @OneToOne
+    @JoinColumn(name = "MY_OWNER_ID", referencedColumnName = "ID")
     private Owner owner;
 
     public Cat() {
