@@ -27,6 +27,14 @@ public class Cat {
     public Cat() {
     }
 
+    public Owner getOwner() {
+        return owner;
+    }
+
+    public void setOwner(Owner owner) {
+        this.owner = owner;
+    }
+
     public Long getId() {
         return id;
     }
