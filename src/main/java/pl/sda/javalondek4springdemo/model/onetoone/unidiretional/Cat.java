@@ -13,7 +13,7 @@ import javax.persistence.Table;
 @Entity(name = "CatUnidirectional")
 @Table(name = "CATS")
 // Columns in db:
-// ID, NAME, MY_OWNER_ID
+// ID, NAME
 public class Cat {
 
     @Id
