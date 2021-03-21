@@ -39,5 +39,8 @@ public class OneToManyBidirectionalExample implements CommandLineRunner {
         black.setOwner(stranger);
 
         ownerRepository.save(stranger);
+
+        ownerRepository.findAll()
+            .forEach(owner -> logger.info("owner [{}] and cats: [{}]", owner, owner.getCat()));
     }
 }
