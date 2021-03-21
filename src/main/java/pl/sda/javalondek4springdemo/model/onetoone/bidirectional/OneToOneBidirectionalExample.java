@@ -31,11 +31,15 @@ public class OneToOneBidirectionalExample implements CommandLineRunner {
 
         Cat mruczek = new Cat();
         mruczek.setName("mruczek");
-//
-//        me.setCat(mruczek);
-//        mruczek.setOwner(me);
 
-        // save to db
+        catRepository.save(mruczek);
+        logger.info("mruczek was saved to db with id: [{}]", mruczek.getId());
+//
+        me.setCat(mruczek);
         ownerRepository.save(me);
+
+        mruczek.setOwner(me);
+        catRepository.save(mruczek);
+        // saving without cascade is nightmare, but sometimes is necessary :(
     }
 }
