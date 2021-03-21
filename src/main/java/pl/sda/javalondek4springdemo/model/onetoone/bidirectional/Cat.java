@@ -1,7 +1,5 @@
 package pl.sda.javalondek4springdemo.model.onetoone.bidirectional;
 
-import org.springframework.context.annotation.Profile;
-
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;

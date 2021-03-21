@@ -1,8 +1,5 @@
 package pl.sda.javalondek4springdemo.model.onetoone.unidiretional;
 
-import org.springframework.context.annotation.Profile;
-
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -25,6 +22,7 @@ public class Owner {
 
     private String lastName;
 
+    @OneToOne
     private Cat cat;
 
     public Owner() {

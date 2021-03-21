@@ -10,7 +10,6 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
-@Profile("onetoone-unidirectional")
 @Entity(name = "CatUnidirectional")
 @Table(name = "CATS")
 // Columns in db:

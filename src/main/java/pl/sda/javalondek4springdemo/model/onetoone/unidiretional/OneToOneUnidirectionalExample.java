@@ -8,7 +8,7 @@ import org.springframework.stereotype.Component;
 import pl.sda.javalondek4springdemo.repository.onetoone.CatRepository;
 import pl.sda.javalondek4springdemo.repository.onetoone.OwnerRepository;
 
-@Profile("onetoone-birectional")
+@Profile("onetoone-unidirectional")
 @Component
 public class OneToOneUnidirectionalExample implements CommandLineRunner {
 
