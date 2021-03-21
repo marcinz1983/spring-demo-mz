@@ -10,8 +10,7 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 // Columns in db:
-// ID, FIRST_NAME, LAST_NAME
-// no CAT column!!!
+// ID, FIRST_NAME, LAST_NAME, CAT_ID
 @Entity(name = "OwnerUnidirectional")
 @Table(name = "OWNERS")
 public class Owner {
