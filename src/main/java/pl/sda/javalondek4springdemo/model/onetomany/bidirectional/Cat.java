@@ -1,13 +1,15 @@
-package pl.sda.javalondek4springdemo.model.onetoone.bidirectional;
+package pl.sda.javalondek4springdemo.model.onetomany.bidirectional;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.OneToOne;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 
-@Entity
+@Entity(name = "CatsManyToOne")
+@Table(name = "CATS_BELONGING_TO_OWNER")
 // Columns in db:
 // ID, NAME, MY_OWNER_ID
 public class Cat {
@@ -18,14 +20,19 @@ public class Cat {
 
     private String name;
 
-    @OneToOne
-    // @JoinColumn attributes
-    // name - name of foreign key in CAT table
-    // referencedColumnName - name of primary key from OWNER table
+    @ManyToOne
     @JoinColumn(name = "MY_OWNER_ID", referencedColumnName = "IDENTIFIER")
     private Owner owner;
 
     public Cat() {
+    }
+
+    public Owner getOwner() {
+        return owner;
+    }
+
+    public void setOwner(Owner owner) {
+        this.owner = owner;
     }
 
     public Long getId() {
@@ -44,11 +51,11 @@ public class Cat {
         this.name = name;
     }
 
-    public Owner getOwner() {
-        return owner;
-    }
-
-    public void setOwner(Owner owner) {
-        this.owner = owner;
+    @Override
+    public String toString() {
+        return "Cat{" +
+            "id=" + id +
+            ", name='" + name + '\'' +
+            '}';
     }
 }
