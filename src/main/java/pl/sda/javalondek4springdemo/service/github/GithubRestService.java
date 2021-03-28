@@ -5,6 +5,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.ParameterizedTypeReference;
+import org.springframework.http.HttpMethod;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 import pl.sda.javalondek4springdemo.dto.UserRepoDto;
@@ -41,11 +42,9 @@ public class GithubRestService {
 
     public List<UserRepoDto> findInfoOfMyRepos() {
 
-        ParameterizedTypeReference<List<UserRepoDto>> result = restTemplate.getForObject(allRepositoriesUrl,
-            new ParameterizedTypeReference<List<UserRepoDto>>() {}.getClass(),
-            gitHubUser);
-
-        return  result;
+        return restTemplate.exchange(allRepositoriesUrl, HttpMethod.GET, null,
+            new ParameterizedTypeReference<List<UserRepoDto>>() {},
+            gitHubUser).getBody();
     }
 
     public UserRepoDto[] findInfoOfMyReposAsArray() {
